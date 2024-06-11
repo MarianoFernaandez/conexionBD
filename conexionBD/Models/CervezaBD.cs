@@ -11,19 +11,21 @@ namespace conexionBD.Models
     internal class CervezaBD
     {
         private string connectionString
-            = "server=127.0.0.1;port=3307;database=world;uid=root;password=454848"; //Corregir esto.
-
-        //"Data Source=pc82\\HEIDISQL;Initial Catalog=practicauno;Integrated Security=True;" //falta esto
-
-        // server=server_address;port=3306;database=database_name;uid=username;password=password
-
+            = "Data Source=SQLSERVER\\SQLSERVER;Initial Catalog=bdg1;User=bdg1;Password=bdg1"; //user=bdg1;Password=bdg1;
+        /*
+            Data Source= ;
+            Initial Catalog= ;
+            User= ;v
+            Password= ;
+        */
+        //    "DefaultConnection": "Server=DESKTOP-4UG60OM\\SQLEXPRESS;Database=expressions;Trusted_Connection=True;MultipleActiveResultSets=True;Encrypt=False"
 
         public List<Cerveza> getcervezas()
         {
             List<Cerveza> cervezas = new List<Cerveza>();
 
-            string query = "selecct nombre, marca, alcohol, cantidad from cerveza";
-
+            string query = "SELECT cantidad, nombre , alcohol , marca   FROM [bdg1].[db_owner].[cervezadb]";
+             
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
@@ -33,7 +35,7 @@ namespace conexionBD.Models
 
                 while (reader.Read())
                 {
-                    int cantidad = reader.GetInt32(3);
+                    int cantidad = reader.GetInt32(3.);
                     string nombre = reader.GetString(0);
                     Cerveza cerveza = new Cerveza(cantidad, nombre);
 

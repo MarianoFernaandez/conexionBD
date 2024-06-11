@@ -55,6 +55,9 @@ class Program
         {
             Console.WriteLine(c.nombre + " " + "hola");
         }
+
+        System.Console.ReadLine();
+
     }
 
     static void mostrarRecomendacion(IBebidaAlcoholica bebidaAlcoholica)
